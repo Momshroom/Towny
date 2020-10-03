@@ -1558,7 +1558,7 @@ public final class TownySQLSource extends TownyDatabaseHandler {
 			} catch (Exception ignored) {
 			}
 			
-			result = rs.getBoolean("usingPlotManagementWildBlockRegen");
+			result = rs.getBoolean("usingPlotManagementWildRegenBlocks");
 			try {
 				world.setUsingPlotManagementWildBlockRevert(result);
 			} catch (Exception ignored) {
@@ -1578,12 +1578,6 @@ public final class TownySQLSource extends TownyDatabaseHandler {
 					world.setPlotManagementWildRevertMaterials(materials);
 				} catch (Exception ignored) {
 				}
-
-			resultLong = rs.getLong("plotManagementWildBlockRegenSpeed");
-			try {
-				world.setPlotManagementWildBlockRevertDelay(resultLong);
-			} catch (Exception ignored) {
-			}
 
 			result = rs.getBoolean("usingTowny");
 			try {
@@ -2022,15 +2016,12 @@ public final class TownySQLSource extends TownyDatabaseHandler {
 			nat_hm.put("plotManagementWildRegenSpeed", world.getPlotManagementWildRevertDelay());
 			
 			// Using PlotManagement Wild Block Regen
-			nat_hm.put("usingPlotManagementWildBlockRegen", world.isUsingPlotManagementWildBlockRevert());
+			nat_hm.put("usingPlotManagementWildRegenBlocks", world.isUsingPlotManagementWildRevertBlocks());
 
 			// Wilderness Explosion Protection blocks
 			if (world.getPlotManagementWildRevertBlocks() != null)
 				nat_hm.put("PlotManagementWildRegenBlocks",
 						StringMgmt.join(world.getPlotManagementWildRevertBlocks(), "#"));
-
-			// Using PlotManagement Wild Block Regen Delay
-			nat_hm.put("plotManagementWildBlockRegenSpeed", world.getPlotManagementWildBlockRevertDelay());
 
 			// Using Towny
 			nat_hm.put("usingTowny", world.isUsingTowny());
